@@ -6,7 +6,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useHistory } from "react-router-dom";
 import InfoIcon from '@mui/icons-material/Info';
 
-function Movies({ poster, title, rating, summary, cast, directors, id, editButton, deleteButton }) {
+export function Movies({ poster, title, rating, summary, cast, directors, id, editButton, deleteButton }) {
 
   //Conditional styling
   const styles = { color: rating > 8.5 ? "green" : "crimson" };
