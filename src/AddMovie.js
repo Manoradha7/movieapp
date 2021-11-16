@@ -3,7 +3,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useHistory } from "react-router-dom";
 
-export function AddMovie({ movies, setMovies }) {
+export function AddMovie() {  // here is we want to pass the probs when we work with offline data to update the movie
 
   // for adding the folowing thing we use the state hook
   const [title, setTitle] = useState("");
@@ -15,6 +15,8 @@ export function AddMovie({ movies, setMovies }) {
   const [trailer, setTrailer] = useState("");
 
   const history = useHistory();
+
+
 
   const addMovie = () => {
     const newMovie = {
@@ -28,9 +30,16 @@ export function AddMovie({ movies, setMovies }) {
     };
     console.log(newMovie);
     // copy the movie list and add the newmovie list
-    setMovies([...movies, newMovie]);
-    history.push("/movies");
-
+    // setMovies([...movies, newMovie]);
+    //history.push("/movies");
+    
+  fetch(`https://616e488fa83a850017caa8e1.mockapi.io/movies`,{
+    method:"POST",
+    body : JSON.stringify(newMovie),
+    headers: {
+      'Content-Type':'application/json',
+    },      
+  }).then(()=> history.push("/movies"))
   };
 
   return (

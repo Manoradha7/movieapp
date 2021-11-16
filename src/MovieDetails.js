@@ -2,16 +2,26 @@ import { useParams } from "react-router-dom";
 import Button from '@mui/material/Button';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useHistory } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 
 export function MovieDetails({ movies }) {
     const { id } = useParams('');
 
+    const [movie,setMovie] = useState({}) //here we choose one movie details so here initial value as object 
+
+    //here is the use of useeffect is to read the particular movie detail only
+    useEffect(()=>{
+        fetch(`https://616e488fa83a850017caa8e1.mockapi.io/movies/${id}`,{method:"GET"})  //method is optional when read the data
+        .then(res =>res.json())
+        .then(data =>setMovie(data));
+      },[])
+
     //using for goback to the previousy viewed page here useHistory used
     const history = useHistory();
 
     //to get particular movie 
-    const movie = movies[id]; //I made the error as movies{id}
+    // step1 : const movie = movies[id]; //I made the error as movies{id}
     const styles = { color: movie.rating > 8.5 ? "green" : "crimson" };
     return (
         <div>
