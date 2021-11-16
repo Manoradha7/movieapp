@@ -34,7 +34,7 @@ const deleteMovie =(id) => {
           // id={index} here this is for passed as props
           id={id} //here it is used for fetching details from api because there used the id for movies 
           editButton={
-            <IconButton aria-label="edit movie" style={{marginLeft:"auto"}} color="error" className="edit-button" onClick={() => history.push("/movies/edit/"+index)} >
+            <IconButton aria-label="edit movie" style={{marginLeft:"auto"}} color="error" className="edit-button" onClick={() => history.push("/movies/edit/"+id)} >
               <EditIcon />
             </IconButton>}
           deleteButton={
