@@ -23,7 +23,7 @@ export function EditMovie() {                      //{ movies, setMovies }
     })
       .then(res => res.json())
       .then(data => setMovie(data));
-  }, []);
+  }, [id]);
 
 
   return movie ? <UpdatedMovie movie={movie} /> : "";

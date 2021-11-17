@@ -20,6 +20,7 @@ import { AddColor  } from './AddColor';
 import { AddMovie } from './AddMovie';
 import { TicTacToe } from './TicTacToe';
 import { Welcome, NotFound } from './Welcome';
+import SimpleForm from './Form'
 
 export default function App() {
   //   const users=[
@@ -78,6 +79,7 @@ export default function App() {
             <Button variant="text" color="inherit" onClick={() => history.push("/add-movies")}>Add Movies</Button>
             <Button variant="text" color="inherit" onClick={() => history.push("/color-game")}>Color Game</Button>
             <Button variant="text" color="inherit" onClick={() => history.push("/tic-tac-toe")}>XOXO Game</Button>
+            <Button variant="text" color="inherit" onClick={() => history.push("/form")}>Form</Button>
             <Button variant="text"
               startIcon={theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
               color="inherit" style={{ marginLeft: "auto" }}
@@ -119,6 +121,9 @@ export default function App() {
           </Route>
           <Route path="/tic-tac-toe">
             <TicTacToe />
+          </Route>
+          <Route path="/form">
+            <SimpleForm />
           </Route>
           <Route exact path="/">
             <Welcome />
