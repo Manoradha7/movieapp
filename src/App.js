@@ -47,15 +47,17 @@ export default function App() {
     },
   });
 
+// const API_URL="https://616e488fa83a850017caa8e1.mockapi.io";
+const API_URL="https://class-movies.herokuapp.com"
 
   // here useEffect only one time updated because of empty dependencies array when the function is mounted so the useffect function is working
 
   //When App Component Mounted -> useEffect only once -> fetch ->setMovies
   useEffect(()=>{
-    fetch("https://616e488fa83a850017caa8e1.mockapi.io/movies")
+    fetch(`${API_URL}/movies`)
     .then(res =>res.json())
     .then(data =>setMovies(data));
-  },[])
+  })
 
 
 // for async-await 
@@ -105,16 +107,16 @@ export default function App() {
             <Redirect to="/movies" />
           </Route>
           <Route path="/movies/edit/:id">
-            <EditMovie movies={movies} setMovies={setMovies} />
+            <EditMovie movies={movies} setMovies={setMovies} API_URL={API_URL} />
           </Route>
           <Route path="/movies/:id">
-            <MovieDetails movies={movies} />
+            <MovieDetails movies={movies} API_URL={API_URL}/>
           </Route>
           <Route path="/movies">
-            <MoviesList movies={movies} setMovies={setMovies} />
+            <MoviesList movies={movies} setMovies={setMovies} API_URL={API_URL}/>
           </Route>
           <Route path="/add-movies">
-            <AddMovie movies={movies} setMovies={setMovies} />
+            <AddMovie movies={movies} setMovies={setMovies} API_URL={API_URL}/>
           </Route>
           <Route path="/color-game">
             <AddColor />

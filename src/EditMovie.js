@@ -6,7 +6,7 @@ import { useEffect, useState  } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 
 //edit movie and moviedetails are like same
-export function EditMovie() {                      //{ movies, setMovies }
+export function EditMovie({API_URL}) {                      //{ movies, setMovies }
 
   //to get the id from url
   const { id } = useParams();
@@ -18,7 +18,7 @@ export function EditMovie() {                      //{ movies, setMovies }
   const [movie, setMovie] = useState(null);
   // for Editing the movie details the initial value is from the useState('initial value')
   useEffect(() => {
-    fetch(`https://616e488fa83a850017caa8e1.mockapi.io/movies/${id}`, {
+    fetch(`${API_URL}/movies/${id}`, {
       method: "GET",
     })
       .then(res => res.json())
@@ -26,10 +26,10 @@ export function EditMovie() {                      //{ movies, setMovies }
   }, [id]);
 
 
-  return movie ? <UpdatedMovie movie={movie} /> : "";
+  return movie ? <UpdatedMovie movie={movie} API_URL={API_URL}/> : "";
 
 }
-function UpdatedMovie({ movie }) {
+function UpdatedMovie({ movie,API_URL }) {
   const [title, setTitle] = useState(movie.title)
   const [poster, setPoster] = useState(movie.poster)
   const [rating, setRating] = useState(movie.rating)
@@ -52,7 +52,7 @@ function UpdatedMovie({ movie }) {
     console.log(updatedMovie);
 
 
-    fetch(`https://616e488fa83a850017caa8e1.mockapi.io/movies/${movie.id}`, {
+    fetch(`${API_URL}/${movie.id}`, {
       method: "PUT",
       body: JSON.stringify(updatedMovie),
       headers: {
@@ -64,13 +64,13 @@ function UpdatedMovie({ movie }) {
   return (
     <form className="form-addmovie">
       <div className="Edit-movie" >
-        <TextField value={title} onChange={(x) => setTitle(x.target.value)} label="Enter the movie title" variant="standard" />
-        <TextField value={poster} onChange={(x) => setPoster(x.target.value)} label="movie poster url" variant="standard" />
-        <TextField value={rating} onChange={(x) => setRating(x.target.value)} label="Enter the movie rating" variant="standard" />
-        <TextField value={summary} onChange={(x) => setSummary(x.target.value)} label="Enter the movie summary" variant="standard" />
-        <TextField value={cast} onChange={(x) => setCast(x.target.value)} label="Enter the movie cast name" variant="standard" />
-        <TextField value={directors} onChange={(x) => setDirectors(x.target.value)} label="Enter the movie directors" variant="standard" />
-        <TextField value={trailer} onChange={(x) => setTrailer(x.target.value)} label="movie trailer url" variant="standard" />
+        <TextField value={title} onChange={(x) => setTitle(x.target.value)} label="Enter the movie title" variant="standard" required />
+        <TextField value={poster} onChange={(x) => setPoster(x.target.value)} label="movie poster url" variant="standard" required/>
+        <TextField value={rating} onChange={(x) => setRating(x.target.value)} label="Enter the movie rating" variant="standard" required/>
+        <TextField value={summary} onChange={(x) => setSummary(x.target.value)} label="Enter the movie summary" variant="standard" required/>
+        <TextField value={cast} onChange={(x) => setCast(x.target.value)} label="Enter the movie cast name" variant="standard" required/>
+        <TextField value={directors} onChange={(x) => setDirectors(x.target.value)} label="Enter the movie directors" variant="standard" required/>
+        <TextField value={trailer} onChange={(x) => setTrailer(x.target.value)} label="movie trailer url" variant="standard" required/>
         <Button onClick={editMovie} variant="outlined">📝Save</Button>
       </div>
     </form>

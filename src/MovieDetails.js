@@ -5,14 +5,14 @@ import { useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 
-export function MovieDetails({ movies }) {
+export function MovieDetails({ movies, API_URL }) {
     const { id } = useParams('');
 
     const [movie,setMovie] = useState({}) //here we choose one movie details so here initial value as object 
 
     //here is the use of useeffect is to read the particular movie detail only
     useEffect(()=>{
-        fetch(`https://616e488fa83a850017caa8e1.mockapi.io/movies/${id}`,{method:"GET"})  //method is optional when read the data
+        fetch(`${API_URL}/movies/${id}`,{method:"GET"})  //method is optional when read the data
         .then(res =>res.json())
         .then(data =>setMovie(data));
       },[])
