@@ -14,7 +14,7 @@ const getMovies=() =>{
   .then((res)=>res.json())
   .then(data=> setMovies(data))
 }
-
+// eslint-disable-next-line
 useEffect(getMovies, []);
 
 const deleteMovie =(id) => {

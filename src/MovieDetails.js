@@ -15,6 +15,7 @@ export function MovieDetails({ movies, API_URL }) {
         fetch(`${API_URL}/movies/${id}`,{method:"GET"})  //method is optional when read the data
         .then(res =>res.json())
         .then(data =>setMovie(data));
+        // eslint-disable-next-line
       },[])
 
     //using for goback to the previousy viewed page here useHistory used

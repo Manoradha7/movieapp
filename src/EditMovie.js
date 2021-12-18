@@ -12,7 +12,7 @@ export function EditMovie({API_URL}) {                      //{ movies, setMovie
   const { id } = useParams();
   //const movie =movies[id];
 
-  const history = useHistory();
+  // const history = useHistory();
   //console.log(id,movie);
 
   const [movie, setMovie] = useState(null);
@@ -23,6 +23,7 @@ export function EditMovie({API_URL}) {                      //{ movies, setMovie
     })
       .then(res => res.json())
       .then(data => setMovie(data));
+      // eslint-disable-next-line
   }, [id]);
 
 
